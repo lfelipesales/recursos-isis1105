@@ -7,7 +7,6 @@ import java.util.List;
  *  en un grafo no dirigido representado como una lista de adyacencia.
  *
  *  @author Felipe Sales
- *  Inspirado en: 
  */
 
 public class BúsquedaEnProfundidad {
@@ -32,9 +31,9 @@ public class BúsquedaEnProfundidad {
         }
 
         // Agrega los arcos a la lista de adyacencia
-        for (int[] arista : arcos) {
-            int v = arista[0];
-            int w = arista[1];
+        for (int[] arco : arcos) {
+            int v = arco[0];
+            int w = arco[1];
             listaAdyacencia.get(v).add(w);
             listaAdyacencia.get(w).add(v); // Grafo no dirigido
         }
@@ -72,6 +71,29 @@ public class BúsquedaEnProfundidad {
         int V = marcado.length;
         if (v < 0 || v >= V) {
             throw new IllegalArgumentException("El vértice " + v + " no está entre 0 y " + (V - 1));
+        }
+    }
+
+    // Ejemplo ejecución
+    public static void main(String[] args) {
+        int V = 7;  // Número de vértices
+        int[][] arcos = {
+            {0, 1},
+            {0, 2},
+            {1, 3},
+            {1, 4},
+            {2, 5},
+            {2, 6},
+            {3, 4}
+        };
+        int S = 0;  // Vértice fuente
+
+        BúsquedaEnProfundidad busqueda = new BúsquedaEnProfundidad(V, arcos, S);
+        System.out.println("Número de vértices conectados al vértice fuente " + S + ": " + busqueda.cuenta());
+
+        // Verifica si hay caminos a todos los vértices
+        for (int v = 0; v < V; v++) {
+            System.out.println("¿Hay un camino desde " + S + " a " + v + "? " + busqueda.marcado(v));
         }
     }
 }

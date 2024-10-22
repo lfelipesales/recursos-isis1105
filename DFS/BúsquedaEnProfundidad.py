@@ -4,8 +4,8 @@ def busqueda_en_profundidad(V, arcos, S):
     listaAdyacencia = [[] for _ in range(V)]  # Lista de adyacencia
 
     # Agrega los arcos a la lista de adyacencia
-    for arista in arcos:
-        v, w = arista
+    for arco in arcos:
+        v, w = arco
         listaAdyacencia[v].append(w)
         listaAdyacencia[w].append(v)  # Grafo no dirigido
 
